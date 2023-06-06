@@ -1,12 +1,10 @@
-class IncidentsPolicy < ApplicationPolicy
+class IncidentPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.all
     end
   end
-
-  before_action :set_responder, only: [:chat?, :helper?, :close?]
 
   # user here is current_user
   # record here is the incident
@@ -22,6 +20,7 @@ class IncidentsPolicy < ApplicationPolicy
   def chat?
     return false if record.is_closed?
 
+    @responder = record.responders.find { |r| r.has_accepted? }
     # creator of incident or responder is allowed to chat.
     record.user == user || @responder == user
   end
@@ -29,6 +28,7 @@ class IncidentsPolicy < ApplicationPolicy
   def helper?
     return false if record.is_closed?
 
+    @responder = record.responders.find { |r| r.has_accepted? }
     # the responder is allowed to help
     @responder == user
   end
@@ -36,13 +36,8 @@ class IncidentsPolicy < ApplicationPolicy
   def close?
     return false if record.is_closed?
 
+    @responder = record.responders.find { |r| r.has_accepted? }
     # creator of incident or responder is allowed to close the incident.
     record.user == user || @responder == user
-  end
-
-  private
-
-  def set_responder
-    @responder = recrod.responders.find { |r| r.has_accepted? }
   end
 end

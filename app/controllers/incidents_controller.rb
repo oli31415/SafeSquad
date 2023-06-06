@@ -1,6 +1,5 @@
-class IncidentController < ApplicationController
+class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :chat, :helper, :close]
-  before_action :set_responder, only: [:show, :chat]
 
   def create
     incident = Incident.new(incident_params)
@@ -9,7 +8,7 @@ class IncidentController < ApplicationController
     authorize incident
 
     if incident.save
-      redirect_to incident_page_path(incident)
+      redirect_to incident_page_path(Incident.last)
     else
       redirect_to root_path, notice: "Incident could not be created."
     end
@@ -21,11 +20,16 @@ class IncidentController < ApplicationController
     # @responder (if there is no responder yet this will be nil)
 
     unless @user_is_affected # if we're not the affected user, make me a responder
-      make_responder(@incident)
+      if Responder.all.find { |r| r.user == current_user }.nil?
+        @responder = make_responder(@incident)
+      else
+        @responder = @incident.responders.find { |r| r.user = current_user }
+      end
     end
   end
 
   def chat
+    @responder = @incident.responders.find { |r| r.has_accepted? }
     # @user_is_affected = @incident.user == current_user
     # @other_user = @user_is_affected ? @responder : @incident.user # other user will be used for chat
   end
@@ -53,7 +57,7 @@ class IncidentController < ApplicationController
     responder.has_accepted = false
 
     responder.save
-    redirect_to incident_page_path(incident)
+    return responder
   end
 
   def set_incident
@@ -61,12 +65,7 @@ class IncidentController < ApplicationController
     authorize @incident
   end
 
-  def set_responder
-    @responder = @incident.responders.find { |r| r.has_accepted? }
-    authorize @responder
-  end
-
   def incident_params
-    params.require(:incident).permit(:type)
+    params.require(:incident).permit(:incident_type)
   end
 end
