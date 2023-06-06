@@ -1,10 +1,24 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# Pages#home --> find me in app/views/pages/home.html.erb %>
 
-<%= simple_form_for Incident.new, url: create_incident_path, method: :post do |f| %>
-  <%= f.input :incident_type, as: :hidden, input_html: { value: "red" } %>
-  <%= f.submit "red button"%>
-<% end %>
+<%# Note - here you can find the CSS files
+    main-container, button-round --> app/assets/stylesheets/components
+    buttonpage-title, inner-buttonpage-container, button-red, button-yellow --> app/assets/stylesheets/pages/home%>
+
+<div class="main-container">
+  <h2 id="buttonpage-title">Stay calm 💛</h2>
+  <div id="inner-buttonpage-container>
+    <div>
+      <%= simple_form_for Incident.new, url: create_incident_path, method: :post do |f| %>
+        <%= f.input :incident_type, as: :hidden, input_html: { value: "red" } %>
+        <button type="submit" class="button-round" id="red-button">Red Button</button>
+        <%# <%= f.submit "red button"%>
+      <% end %>
+    </div>
+    <div>
+      <button class="button-round" id="yellow-button">Yellow Button</button>
+    </div>
+  </div>
+</div>
 
 <!-- For testing purpose -->
 

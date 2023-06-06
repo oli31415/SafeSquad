@@ -1,1 +1,33 @@
-// Specific CSS for your home-page
+// to position the 2 items (buttons)
+#inner-buttonpage-container {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// additional design for the red button
+#red-button {
+  width: 200px;
+  height: 200px;
+  margin: 75px auto;
+  background-color: #FF0000;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+// addition design for the yellow button
+#yellow-button {
+  width: 175px;
+  height: 175px;
+  margin: 50px auto;
+  background-color: $yellow;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+// to position the title on the button-page / home only
+#buttonpage-title {
+  text-align: center;
+}
