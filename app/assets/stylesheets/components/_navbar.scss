@@ -5,11 +5,16 @@
 .avatar {
   margin-left: 10px !important;
   margin-top: 20px;
+  width: 80px;
 }
 
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+}
+
+.navbar-brand {
+  margin-right: 0px;
 }
 
 .navbar-lewagon .navbar-collapse {
