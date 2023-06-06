@@ -1,0 +1,11 @@
+<h1>incident page (id=<%= @incident.id %>)</h1>
+<p>I am the <%= @user_is_affected ? "affected" : "responder" %></p>
+<% unless @user_is_affected %>
+  <p>responder#id=<%= @responder.id %></p>
+  <p>this is the <%= @responder.has_accepted? ? "map" : "responder" %> page</p>
+  <% unless @responder.has_accepted? %>
+    <%= link_to "accept", accept_path, class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <p>the current responder is <%= @responder ? @responder : @responder.class %></p>
+<% end %>

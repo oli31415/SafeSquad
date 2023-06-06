@@ -1,6 +1,11 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
+<%= simple_form_for Incident.new, url: create_incident_path, method: :post do |f| %>
+  <%= f.input :incident_type, as: :hidden, input_html: { value: "red" } %>
+  <%= f.submit "red button"%>
+<% end %>
+
 <!-- For testing purpose -->
 <%# <div class="button_round">
   <a href="#">red</a>
