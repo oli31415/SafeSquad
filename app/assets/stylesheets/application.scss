@@ -11,7 +11,26 @@
 @import "components/index";
 @import "pages/index";
 
+body {
+  background-color: #070707;
+}
 a {
   text-decoration: none;
   color: #070707;
+}
+
+h1 {
+  color: $yellow;
+}
+
+h2 {
+  color: $yellow;
+}
+
+h3 {
+  color: $yellow;
+}
+
+p {
+  color: $white;
 }
