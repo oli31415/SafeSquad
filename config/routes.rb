@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get "incidents/:id", to: "incidents#show", as: "incident_page" # get to responder page & create responder
 
   # TODO: chat model, chat routes ...
+
+  get "profile/:id", to: "users#show", as: "profile"
 end

@@ -1,0 +1,31 @@
+<div class="main-container">
+  <div class="profile-container">
+    <div class="avatar-profile">
+      <img src="<%= image_path('test_avatar.webp') %>" alt="" class="avatar-image">
+      <div>
+        <h1>My Profile</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-section">
+  <h3>Personal Information</h3>
+  <p><strong>Email:</strong> <span class="info-value"><%= current_user.email %></span></p>
+  <p><strong>First Name:</strong> <span class="info-value"><%= current_user.first_name %></span></p>
+  <p><strong>Last Name:</strong> <span class="info-value"><%= current_user.last_name %></span></p>
+</div>
+
+<div class="profile-section">
+  <h3>Medical Information</h3>
+  <p><strong>Medications:</strong> <span class="info-value">Sertraline</span></p>
+  <p><strong>Height:</strong> <span class="info-value">178cm</span></p>
+  <p><strong>Medical Conditions:</strong> <span class="info-value">Type 1 Diabetes</span></p>
+  <p><strong>Language:</strong> <span class="info-value">English, French</span></p>
+</div>
+
+<div class="profile-section">
+  <h3>Emergency Contacts</h3>
+  <!-- Add emergency contacts information here -->
+  <p><strong>Mum:</strong> <span class="contact-value">+41797899025</span></p>
+  <p><strong>Dad:</strong> <span class="contact-value">+41797898852</span></p>
+</div>
