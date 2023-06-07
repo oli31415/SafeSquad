@@ -31,6 +31,12 @@ class IncidentsController < ApplicationController
     # raise
   end
 
+  def index
+    @incidents = current_user.incidents
+    authorize @incidents
+    @responders = current_user.responders
+  end
+
   def chat
     @responder = @incident.responders.find { |r| r.has_accepted? }
     # @user_is_affected = @incident.user == current_user

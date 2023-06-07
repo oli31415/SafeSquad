@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'missions/show'
   devise_for :users
 
   # notes: everything is only possible while logged in.
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   # TODO: chat model, chat routes ...
 
   get "profile/:id", to: "users#show", as: "profile"
+  get "missions", to: "incidents#index", as: "missions"
 end

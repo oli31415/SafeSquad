@@ -8,6 +8,9 @@ class IncidentPolicy < ApplicationPolicy
 
   # user here is current_user
   # record here is the incident
+  def index?
+    true
+  end
 
   def create?
     true
