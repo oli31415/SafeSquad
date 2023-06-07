@@ -15,8 +15,12 @@
       <h2 class="title-responderpage">We've sent out the notification!</h2>
     <% end %>
   <% end %>
+
   <div class="map-container">
+<img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+FF0000(8.5495,47.3593)/8.5495,47.3593,16.5,0,0/600x1000?access_token=pk.eyJ1Ijoic2FzaGFzY2hlcnJlciIsImEiOiJjbGlsdDhqNWswYzQ1M2ZwajNlNThnc2NhIn0.lHGiHoU0aSaDC4UmjdyRvA'>
+
   </div>
+
   <div class="user-container">
     <% other_user = @user_is_affected ? @responder : @incident %>
     <% if other_user.nil? %>
@@ -31,10 +35,12 @@
       </div>
     <% end %>
   </div>
+
   <div id="incident-container">
     <h3>Type of incident</h3>
     <p> <%= @incident.incident_type %> </p>
   </div>
+
   <div class="button-container">
     <% unless @user_is_affected %>
       <% unless @responder.has_accepted? %>
@@ -49,12 +55,11 @@
   </div>
 </div>
 
-
 <%# this will eventually be for the pop-up %>
 <% unless @user_is_affected %>
   <script>
     setTimeout(() => {
-      console.log("have you arrived?");
+      console.log("Have you arrived?");
     }, 10000);
   </script>
 <% end %>

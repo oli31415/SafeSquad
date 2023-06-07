@@ -1,12 +1,36 @@
+// .map-container {
+//   height: 301px;
+//   width: 312px;
+//   padding: 0px;
+//   border-style: hidden;
+//   outline: none;
+//   display: grid;
+//   margin: 20px auto;
+//   justify-content: center;
+//   align-content: center;
+// }
+
+
+// .map-container {
+//   height: 300px;
+//   width: 100%;
+//   margin: 20px auto;
+// }
+
+// #map {
+//   height: 100%;
+//   width: 100%;
+// }
+
+
 .map-container {
-  height: 301px;
-  width: 312px;
-  padding: 0px;
-  border-style: hidden;
-  outline: none;
-  background-color:#d9d9d9;
-  display: grid;
+  position: inherit;
   margin: 20px auto;
-  justify-content: center;
-  align-content: center;
+  height: 350px;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
