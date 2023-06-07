@@ -1,4 +1,4 @@
-<h1>incident page (id=<%= @incident.user.first_name %>)</h1>
+<h1>incident page (id=<%= @incident.id %>)</h1>
 <p>I am the <%= @user_is_affected ? "affected" : "responder" %></p>
 <% unless @user_is_affected %>
   <p>responder#id=<%= @responder.id %></p>
