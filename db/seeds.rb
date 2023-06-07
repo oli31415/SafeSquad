@@ -8,14 +8,14 @@
 # users.rb
 User.create!(
   email: 'john@example.com',
-  encrypted_password: 'password',
+  password: 'password',
   first_name: 'John',
   last_name: 'Doe'
 )
 
 User.create!(
   email: 'jane@example.com',
-  encrypted_password: 'password',
+  password: 'password',
   first_name: 'Jane',
   last_name: 'Smith'
 )
