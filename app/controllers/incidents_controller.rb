@@ -17,6 +17,10 @@ class IncidentsController < ApplicationController
 
   def show
     @user_is_affected = @incident.user == current_user # use this to display either for affected or helper
+    if @user_is_affected && @incident.incident_type == "yellow"
+      redirect_to ask_type_path(@incident)
+      return 0
+    end
     # @incident
     # @responder (if there is no responder yet this will be nil)
 
@@ -42,6 +46,29 @@ class IncidentsController < ApplicationController
     @responder = @incident.responders.find { |r| r.has_accepted? }
     # @user_is_affected = @incident.user == current_user
     # @other_user = @user_is_affected ? @responder : @incident.user # other user will be used for chat
+  end
+
+  def ask_type
+    @incident = Incident.find(params[:id])
+    authorize @incident
+    @types = [
+      "many",
+      "different",
+      "types",
+      "here"
+    ]
+  end
+
+  def set_type
+    incident = Incident.find(params[:id])
+    incident.incident_type = params[:incident][:incident_type]
+    authorize incident
+
+    if incident.save
+      redirect_to incident_page_path(incident)
+    else
+      redirect_to root_path, notice: "Incident could not be created."
+    end
   end
 
   def helper

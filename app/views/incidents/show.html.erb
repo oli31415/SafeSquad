@@ -1,16 +1,16 @@
 <h1>incident page (id=<%= @incident.id %>)</h1>
-<p>I am the <%= @user_is_affected ? "affected" : "responder" %> <%= @current_user.first_name %> </p>
+<p>I am the <%= @user_is_affected ? "affected" : "responder" %> <%= @current_user.first_name %></p>
 
 <div class="main-container">
   <% unless @user_is_affected %>
     <% unless @responder.has_accepted? %>
-      <h2 class="title-responderpage"> <%= @incident.user.first_name %> needs your help!</h2>
+      <h2 class="title-responderpage"><%= @incident.user.first_name %> needs your help!</h2>
     <% else %>
-      <h2> Your way to <%= @incident.user.first_name %>! </h2>
+      <h2> Your way to <%= @incident.user.first_name %>!</h2>
     <% end %>
   <% else %>
     <% unless @responder.nil? %>
-      <h2 class="title-responderpage"> <%= @responder.user.first_name %> is on the way to you! </h2>
+      <h2 class="title-responderpage"><%= @responder.user.first_name %> is on the way to you! </h2>
     <% else %>
       <h2 class="title-responderpage">We've sent out the notification!</h2>
     <% end %>
@@ -26,14 +26,14 @@
       <img src="<%= image_path("test_avatar.webp") %>" alt="" class="avatar">
       <div class="user-info">
         <div class="">
-          <h2> <%= other_user.first_name + " " + other_user.last_name %> </h2>
+          <h2><%= other_user.first_name + " " + other_user.last_name %> </h2>
         </div>
       </div>
     <% end %>
   </div>
   <div id="incident-container">
     <h3>Type of incident</h3>
-    <p> <%= @incident.incident_type %> </p>
+    <p><%= @incident.incident_type %></p>
   </div>
   <div class="button-container">
     <% unless @user_is_affected %>
@@ -52,6 +52,7 @@
 
 <%# this will eventually be for the pop-up %>
 <% unless @user_is_affected %>
+  <% if @responder.has_accepted %>
   <script>
     setTimeout(() => {
       console.log("have you arrived?");

@@ -16,6 +16,18 @@ class IncidentPolicy < ApplicationPolicy
     true
   end
 
+  def ask_type?
+    return false if record.is_closed?
+
+    record.user == user
+  end
+
+  def set_type?
+    return false if record.is_closed?
+
+    record.user == user
+  end
+
   def show?
     !record.is_closed?
   end
