@@ -1,4 +1,5 @@
 class IncidentsController < ApplicationController
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :set_incident, only: [:show, :chat, :helper, :close]
 
   def create
@@ -20,10 +21,10 @@ class IncidentsController < ApplicationController
     # @responder (if there is no responder yet this will be nil)
 
     unless @user_is_affected # if we're not the affected user, make me a responder
-      if Responder.all.find { |r| r.user == current_user }.nil?
+      if Responder.all.find { |r| r.user == current_user && !r.incident.is_closed? }.nil?
         @responder = make_responder(@incident)
       else
-        @responder = @incident.responders.find { |r| r.user = current_user }
+        @responder = @incident.responders.find { |r| r.user == current_user }
       end
     else # if we are the affected user, try to find the the responder
       @responder = @incident.responders.find { |r| r.has_accepted? }
@@ -70,5 +71,11 @@ class IncidentsController < ApplicationController
 
   def incident_params
     params.require(:incident).permit(:incident_type)
+  end
+
+  def user_not_authorized
+    # when one user closes the case, the other user should be redirected to the root
+    # flash[:alert] = "You are not authorized to perform this action."
+    redirect_to root_path
   end
 end

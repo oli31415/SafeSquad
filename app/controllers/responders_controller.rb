@@ -1,5 +1,5 @@
 class RespondersController < ApplicationController
-  before_action :set_incident, only: [:accept, :destroy]
+  before_action :set_incident, only: [:accept]
 
   def accept
     if @incident.responders.find { |r| r.has_accepted? } # cannot accept when another user has already accepted

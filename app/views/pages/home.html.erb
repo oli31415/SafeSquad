@@ -22,6 +22,10 @@
   </div>
 </div>
 
+<% unless @incident.nil? %>
+  <%= link_to "most recent incident (just for development)", incident_page_path(@incident), class: "btn btn-primary" %>
+<% end %>
+
 <!-- For testing purpose -->
 
 <!-- html for the main container

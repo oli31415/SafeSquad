@@ -22,7 +22,7 @@ class IncidentPolicy < ApplicationPolicy
 
     @responder = record.responders.find { |r| r.has_accepted? }
     # creator of incident or responder is allowed to chat.
-    record.user == user || @responder == user
+    record.user == user || @responder.user == user
   end
 
   def helper?
@@ -30,7 +30,7 @@ class IncidentPolicy < ApplicationPolicy
 
     @responder = record.responders.find { |r| r.has_accepted? }
     # the responder is allowed to help
-    @responder == user
+    @responder.user == user
   end
 
   def close?
@@ -38,6 +38,6 @@ class IncidentPolicy < ApplicationPolicy
 
     @responder = record.responders.find { |r| r.has_accepted? }
     # creator of incident or responder is allowed to close the incident.
-    record.user == user || @responder == user
+    record.user == user || @responder.user == user
   end
 end
