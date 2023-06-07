@@ -1,50 +1,56 @@
 <h1>incident page (id=<%= @incident.id %>)</h1>
-<p>I am the <%= @user_is_affected ? "affected" : "responder" %></p>
-
-<% unless @user_is_affected %>
-  <p>responder#id=<%= @responder.id %></p>
-  <p>this is the <%= @responder.has_accepted? ? "map" : "responder" %> page</p>
-  <% unless @responder.has_accepted? %>
-    <%= link_to "accept", accept_path, class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to "arrive", helper_page_path(@incident), class: "btn btn-secondary" %>
-  <% end %>
-  <%= link_to "cancel", cancel_path(@responder), class: "btn btn-danger" %>
-<% else %>
-  <p>the current responder_id is <%= @responder.nil? ? @responder.class : @responder.id %></p>
-  <%= link_to "close the case", close_path(@incident), class: "btn btn-primary" %>
-<% end %>
+<p>I am the <%= @user_is_affected ? "affected" : "responder" %> <%= @current_user.first_name %> </p>
 
 <div class="main-container">
-  <h2 id="title-responderpage"> <%= @incident.user.first_name %> needs your help!</h2>
+  <% unless @user_is_affected %>
+    <% unless @responder.has_accepted? %>
+      <h2 class="title-responderpage"> <%= @incident.user.first_name %> needs your help!</h2>
+    <% else %>
+      <h2> Your way to <%= @incident.user.first_name %>! </h2>
+    <% end %>
+  <% else %>
+    <% unless @responder.nil? %>
+      <h2 class="title-responderpage"> <%= @responder.user.first_name %> is on the way to you! </h2>
+    <% else %>
+      <h2 class="title-responderpage">We've sent out the notification!</h2>
+    <% end %>
+  <% end %>
   <div class="map-container">
   </div>
   <div class="user-container">
-    <img src="<%= image_path("test_avatar.webp") %>" alt="" class="avatar">
-    <div class="user-info">
-      <div class="">
-        <h2> <%= @incident.user.first_name + " " + @incident.user.last_name %> </h2>
+    <% other_user = @user_is_affected ? @responder : @incident %>
+    <% if other_user.nil? %>
+      <h3>Waiting for responders...</h3>
+    <% else %>
+      <% other_user = other_user.user %>
+      <img src="<%= image_path("test_avatar.webp") %>" alt="" class="avatar">
+      <div class="user-info">
+        <div class="">
+          <h2> <%= other_user.first_name + " " + other_user.last_name %> </h2>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
-
   <div id="incident-container">
     <h3>Type of incident</h3>
     <p> <%= @incident.incident_type %> </p>
   </div>
   <div class="button-container">
-    <a href="#" class="button">Respond to Incident</a>
-    <a href="#" class="button"><Decline></Decline></a>
+    <% unless @user_is_affected %>
+      <% unless @responder.has_accepted? %>
+        <%= link_to "Accept Request", accept_path, class: "button" %>
+      <% else %>
+        <%= link_to "I am here", helper_page_path(@incident), class: "button" %>
+      <% end %>
+      <%= link_to "Decline", cancel_path(@responder), class: "button" %>
+    <% else %>
+      <%= link_to "close the case", close_path(@incident), class: "button" %>
+    <% end %>
   </div>
 </div>
 
-<h2> Your way to <%= @incident.user.first_name %>! </h2>
-<% if @responder %>
-  <h2> <%= @responder.user.first_name %> is on the way to you! </h2>
-<% end %>
 
-
-# this will eventually be for the pop-up
+<%# this will eventually be for the pop-up %>
 <% unless @user_is_affected %>
   <script>
     setTimeout(() => {
