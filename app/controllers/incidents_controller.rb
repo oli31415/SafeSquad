@@ -25,7 +25,10 @@ class IncidentsController < ApplicationController
       else
         @responder = @incident.responders.find { |r| r.user = current_user }
       end
+    else # if we are the affected user, try to find the the responder
+      @responder = @incident.responders.find { |r| r.has_accepted? }
     end
+    # raise
   end
 
   def chat
