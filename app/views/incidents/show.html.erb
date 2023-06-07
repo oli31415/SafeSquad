@@ -6,9 +6,21 @@
   <p>this is the <%= @responder.has_accepted? ? "map" : "responder" %> page</p>
   <% unless @responder.has_accepted? %>
     <%= link_to "accept", accept_path, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "arrive", helper_page_path(@incident), class: "btn btn-secondary" %>
   <% end %>
+  <%= link_to "cancel", cancel_path(@responder), class: "btn btn-danger" %>
 <% else %>
-  <p>the current responder is <%= @responder.nil? ? @responder.class : @responder.id %></p>
+  <p>the current responder_id is <%= @responder.nil? ? @responder.class : @responder.id %></p>
+  <%= link_to "close the case", close_path(@incident), class: "btn btn-primary" %>
+<% end %>
+
+<% unless @user_is_affected %>
+  <script>
+    setTimeout(() => {
+      console.log("have you arrived?");
+    }, 10000);
+  </script>
 <% end %>
 
 <div class="main-container">

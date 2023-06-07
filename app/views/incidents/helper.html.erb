@@ -1,0 +1,4 @@
+<h1>This is the helper page</h1>
+<p><%= @incident.user.first_name %> (<%= @incident.user %>) is the affected user</p>
+
+<%= link_to "close the case", close_path(@incident), class: "btn btn-primary" %>
