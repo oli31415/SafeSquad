@@ -7,5 +7,5 @@
     <%= link_to "accept", accept_path, class: "btn btn-primary" %>
   <% end %>
 <% else %>
-  <p>the current responder is <%= @responder ? @responder : @responder.class %></p>
+  <p>the current responder is <%= @responder.nil? ? @responder.class : @responder.id %></p>
 <% end %>
