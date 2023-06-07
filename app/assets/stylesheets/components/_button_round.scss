@@ -1,4 +1,4 @@
-.button_round {
+.button-round {
   background-color: white;
   border: white;
   border-radius: 50%;
@@ -6,7 +6,8 @@
   padding: 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
+  justify-items: center;
   font-size: 16px;
   margin: 2px 4px;
 }

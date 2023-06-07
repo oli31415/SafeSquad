@@ -1,10 +1,66 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# Pages#home --> find me in app/views/pages/home.html.erb %>
 
+<%# Note - here you can find the CSS files
+    main-container, button-round --> app/assets/stylesheets/components
+    buttonpage-title, inner-buttonpage-container, button-red, button-yellow --> app/assets/stylesheets/pages/home%>
+
+<div class="main-container">
+  <h2 id="buttonpage-title">Stay calm 💛</h2>
+  <div id="inner-buttonpage-container>
+    <div>
+      <%= simple_form_for Incident.new, url: create_incident_path, method: :post do |f| %>
+        <%= f.input :incident_type, as: :hidden, input_html: { value: "red" } %>
+        <button type="submit" class="button-round" id="red-button">Red Button</button>
+        <%# <%= f.submit "red button"%>
+      <% end %>
+    </div>
+    <div>
+      <button class="button-round" id="yellow-button">Yellow Button</button>
+    </div>
+  </div>
+</div>
+
+<!-- For testing purpose -->
+
+<!-- html for the main container
+<div class="main-container">
+  <p>thats the main container</p>
+</div>
+-->
+
+<!-- html for the User Container incl. Input
+<div class="user-container">
+  <img src="<%= image_path("test_avatar.webp") %>" alt="" class="avatar">
+  <div class="user-info">
+    <div class="">
+      <h2>Jon James</h2>
+      <p>Whatever Jon James is doing.</p>
+    </div>
+  </div>
+</div>
+-->
+
+<!-- html for the button container
+<div class="button-container">
+  <a href="#" class="button">Button 1</a>
+  <a href="#" class="button">Button 2</a>
+</div>
+-->
+
+<!-- html for the different components
 <div class="button_round">
   <a href="#">red</a>
 </div>
 
-<div class="button_round">
-  <a href="#">yellow</a>
+<div class="button">
+  <a href="#">button</a>
 </div>
+
+<div class="map-container">
+  <p>here goes the map</p>
+</div>
+
+<div class="img-container">
+  <p>here goes the image</p>
+</div>
+-->

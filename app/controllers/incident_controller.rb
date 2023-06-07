@@ -1,2 +1,0 @@
-class IncidentController < ApplicationController
-end
