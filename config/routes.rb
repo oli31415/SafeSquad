@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "incidents/:id/chat", to: "incidents#chat", as: "chat_page" # get to chat page # display depends on current_user
   get "incidents/:id/helper", to: "incidents#helper", as: "helper_page" # get to helper page
   get "responders/:id", to: "responders#accept", as: "accept" # accept incident
-  delete "responders/:id", to: "responders#destroy", as: "cancel" # cancel response
+  get "responders/:id/cancel", to: "responders#destroy", as: "cancel" # cancel response
   get "incidents/:id/close", to: "incidents#close", as: "close" # close the case
 
   # anyone can get here, but the display dependes on has_accepted & current_user:
