@@ -38,6 +38,12 @@
   </div>
 </div>
 
+<h2> Your way to <%= @incident.user.first_name %>! </h2>
+<% if @responder %>
+  <h2> <%= @responder.user.first_name %> is on the way to you! </h2>
+<% end %>
+
+
 # this will eventually be for the pop-up
 <% unless @user_is_affected %>
   <script>
@@ -45,9 +51,4 @@
       console.log("have you arrived?");
     }, 10000);
   </script>
-<% end %>
-
-<h2> Your way to <%= @incident.user.first_name %>! </h2>
-<% if @responder %>
-  <h2> <%= @responder.user.first_name %> is on the way to you! </h2>
 <% end %>
