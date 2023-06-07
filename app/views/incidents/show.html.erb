@@ -15,14 +15,6 @@
   <%= link_to "close the case", close_path(@incident), class: "btn btn-primary" %>
 <% end %>
 
-<% unless @user_is_affected %>
-  <script>
-    setTimeout(() => {
-      console.log("have you arrived?");
-    }, 10000);
-  </script>
-<% end %>
-
 <div class="main-container">
   <h2 id="title-responderpage"> <%= @incident.user.first_name %> needs your help!</h2>
   <div class="map-container">
@@ -45,6 +37,15 @@
     <a href="#" class="button"><Decline></Decline></a>
   </div>
 </div>
+
+# this will eventually be for the pop-up
+<% unless @user_is_affected %>
+  <script>
+    setTimeout(() => {
+      console.log("have you arrived?");
+    }, 10000);
+  </script>
+<% end %>
 
 <h2> Your way to <%= @incident.user.first_name %>! </h2>
 <% if @responder %>
