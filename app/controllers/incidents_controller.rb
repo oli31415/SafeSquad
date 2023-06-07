@@ -20,15 +20,15 @@ class IncidentsController < ApplicationController
     # @responder (if there is no responder yet this will be nil)
 
     unless @user_is_affected # if we're not the affected user, make me a responder
-      if Responder.all.find { |r| r.user == current_user }.nil?
+      if Responder.all.find { |r| r.user == current_user && !r.incident.is_closed? }.nil?
         @responder = make_responder(@incident)
       else
-        @responder = @incident.responders.find { |r| r.user = current_user }
+        @responder = @incident.responders.find { |r| r.user == current_user }
       end
     else # if we are the affected user, try to find the the responder
       @responder = @incident.responders.find { |r| r.has_accepted? }
     end
-    # raise
+
   end
 
   def chat

@@ -3,14 +3,14 @@
   height: 120px;
   margin: 0 auto;
   padding: 20px;
-  background-color: green;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .user-info {
   display: flex;
   align-items: center;
+  margin-left: 50px;
 }
 
 .user-info p {
