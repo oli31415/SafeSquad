@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get "responders/:id/cancel", to: "responders#destroy", as: "cancel" # cancel response
   get "incidents/:id/close", to: "incidents#close", as: "close" # close the case
 
+  get "incidents/:id/type", to: "incidents#ask_type", as: "ask_type"
+  patch "incidents/:id/", to: "incidents#set_type", as: "set_type"
+
   # anyone can get here, but the display dependes on has_accepted & current_user:
   get "incidents/:id", to: "incidents#show", as: "incident_page" # get to responder page & create responder
 
