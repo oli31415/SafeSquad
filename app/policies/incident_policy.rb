@@ -55,4 +55,11 @@ class IncidentPolicy < ApplicationPolicy
     # creator of incident or responder is allowed to close the incident.
     record.user == user || @responder.user == user
   end
+
+  def destroy?
+    return false if record.is_closed?
+
+    # creator of incident is allowed to close the incident.
+    record.user == user
+  end
 end

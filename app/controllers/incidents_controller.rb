@@ -88,6 +88,13 @@ class IncidentsController < ApplicationController
     end
   end
 
+  def destroy
+    @incident = Incident.find(params[:id])
+    authorize @incident
+    @incident.destroy
+    redirect_to root_path
+  end
+
   private
 
   def make_responder(incident)
