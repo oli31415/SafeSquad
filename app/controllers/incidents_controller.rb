@@ -33,7 +33,6 @@ class IncidentsController < ApplicationController
     else # if we are the affected user, try to find the the responder
       @responder = @incident.responders.find { |r| r.has_accepted? }
     end
-
   end
 
   def index
@@ -72,6 +71,11 @@ class IncidentsController < ApplicationController
   end
 
   def helper
+    # update responder.has_arrived so that the text changes for affected
+    @responder = @incident.responders.find { |r| r.user == current_user && !r.incident.is_closed? }
+    @responder.has_arrived = true
+    @responder.save
+    
     # @incident -> @incident.user
   end
 
