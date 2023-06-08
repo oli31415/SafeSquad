@@ -1,4 +1,33 @@
 <h1>This is the helper page</h1>
 <p><%= @incident.user.first_name %> (<%= @incident.user %>) is the affected user</p>
-
-<%= link_to "close the case", close_path(@incident), class: "btn btn-primary" %>
+<div class="main-container">
+  <h2> About <%= @incident.user.first_name %> </h2>
+  <div class="img-container">
+    <img src="<%= image_path("#{@incident.user.first_name}_avatar.jpeg") %>" style="width: 100%" alt="">
+  </div>
+  <div class="helper-subcontainer">
+    <h3> Medical data </h3>
+    <p>here will be the medical data</p>
+  </div>
+  <div id="emergency-container">
+    <h3>Emergency numbers</h3>
+    <div id="emergency-subcontainer">
+      <p>International emergencies: <span class="number-value">112</span></p>
+      <p>Ambulance: <span class="number-value">144</span></p>
+      <p>Police: <span class="number-value">117</span></p>
+      <p>Fire: <span class="number-value">118</span></p>
+      <p>Tox-center: <span class="number-value">145</span></p>
+    </div>
+  </div>
+  <div class="helper-subcontainer">
+    <h3>The 3 C's</h3>
+    <p>Check, Call, Care </p>
+    <h3>The 3 P's</h3>
+    <p>Preserve life, Prevent Deterioration, Promote Recovery</p>
+    <h3>Useful First Aid information</h3>
+    <a href="https://www.globalfirstaidcentre.org/first-aid/" class="external-links" >First Aid Instructions</a>
+  </div>
+  <div class="button-container" id="helper-button-container">
+    <%= link_to "close the case", close_path(@incident), class: "button" %>
+  </div>
+</div>
