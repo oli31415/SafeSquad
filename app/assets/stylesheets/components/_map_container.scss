@@ -28,14 +28,14 @@
   position: inherit; /* this is from sashas mapbox */
 
   /* --- this is from what was in main
-  height: 301px; 
+  height: 301px;
   padding: 0px;
   border-style: hidden;
   outline: none;
   background-color:#d9d9d9;
   display: grid;
-  --- this is from what was in main */ 
-  
+  --- this is from what was in main */
+
   /* this was present in both */
   margin: 20px auto;
   height: 350px;
@@ -45,4 +45,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.mapboxgl-popup-content {
+  padding: 4px 10px 0px 10px !important
 }
