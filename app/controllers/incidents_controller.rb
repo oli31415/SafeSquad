@@ -16,6 +16,7 @@ class IncidentsController < ApplicationController
     else
       redirect_to root_path, notice: "Incident could not be created."
     end
+    return incident.id
   end
 
   def show
