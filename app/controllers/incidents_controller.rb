@@ -1,8 +1,11 @@
 class IncidentsController < ApplicationController
+  MONTHS = %w[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :set_incident, only: [:show, :chat, :helper, :close]
 
   def create
+    # raise
     incident = Incident.new(incident_params)
     incident.user = current_user
     incident.is_closed = false
@@ -36,6 +39,7 @@ class IncidentsController < ApplicationController
   end
 
   def index
+    @months = MONTHS
     @incidents = current_user.incidents
     authorize @incidents
     @responders = current_user.responders
@@ -50,12 +54,7 @@ class IncidentsController < ApplicationController
   def ask_type
     @incident = Incident.find(params[:id])
     authorize @incident
-    @types = [
-      "many",
-      "different",
-      "types",
-      "here"
-    ]
+    @types = Incident.types
   end
 
   def set_type
@@ -75,7 +74,7 @@ class IncidentsController < ApplicationController
     @responder = @incident.responders.find { |r| r.user == current_user && !r.incident.is_closed? }
     @responder.has_arrived = true
     @responder.save
-    
+
     # @incident -> @incident.user
   end
 

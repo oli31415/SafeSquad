@@ -13,7 +13,6 @@ class RespondersController < ApplicationController
     @responder.has_accepted = true
 
     if @responder.save
-      # raise
       redirect_to incident_page_path(@incident)
     else
       redirect_back fallback_location: root_path, notice: "Incident could not be closed."

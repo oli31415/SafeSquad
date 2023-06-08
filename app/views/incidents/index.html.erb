@@ -1,31 +1,46 @@
 <div class="main-container">
   <div class="profile-container">
     <div class="avatar-profile">
-      <img src="<%= image_path('<%= current_user.first_name %>_avatar.jpeg') %>" alt="" class="avatar-image"><%=  %>
+      <img src="<%= image_path("#{current_user.first_name}_avatar.jpeg") %>" alt="" class="avatar-image"><%=  %>
       <div>
         <h1>My Past Missions</h1>
       </div>
     </div>
   </div>
 
-  <div class="profile-section">
-    <div class="mission-card">
-      <h3>Mission 1</h3>
-      <p>You saved 12 kittens from certain death.</p>
-    </div>
+  <div>
+    <h3>My Past Incidents</h3>
+    <% @incidents.each do |incident| %>
+      <div class="profile-section">
+        <div class="mission-card">
+          <% date = incident.created_at.to_datetime %>
+          <% year = date.year == Time.now.year ? "" : " #{date.year}" %>
+          <% month = @months[date.month.to_i - 1] %>
+          <% r = incident.responders.all.find { |r| r.has_accepted? } %>
+          <% name = r.nil? ? "Missing responder" : r.user.first_name %>
+
+          <h3><%= name %> helped you</h3>
+          <p>with <%= incident.incident_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
+          <%# <p>You saved 12 kittens from certain death.</p> %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="profile-section">
-    <div class="mission-card">
-      <h3>Mission 2</h3>
-      <p>You cured chlamydia</p>
-    </div>
-  </div>
+  <div>
+    <h3>Incidents I have helped on</h3>
+    <% @responders.each do |responder| %>
+      <div class="profile-section">
+        <div class="mission-card">
+          <% date = responder.incident.created_at.to_datetime %>
+          <% year = date.year == Time.now.year ? "" : " #{date.year}" %>
+          <% month = @months[date.month.to_i - 1] %>
 
-  <div class="profile-section">
-    <div class="mission-card">
-      <h3>Mission 3</h3>
-      <p>You created a device that protects you from stepping on legos.</p>
-    </div>
+          <h3>You helped <%= responder.incident.user.first_name %></h3>
+          <p>with <%= responder.incident.incident_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
+          <%# <p>You cured chlamydia</p> %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
