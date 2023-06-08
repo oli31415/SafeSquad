@@ -57,10 +57,10 @@
 <%# this will eventually be for the pop-up %>
 <% unless @user_is_affected %>
   <% if @responder.has_accepted %>
-  <script>
-    setTimeout(() => {
-      console.log("Have you arrived?");
-    }, 10000);
-  </script>
+    <script>
+      setTimeout(() => {
+        console.log("Have you arrived?"); // do this
+      }, 10000);                          // after 10000 ms
+    </script>
   <% end %>
 <% end %>
