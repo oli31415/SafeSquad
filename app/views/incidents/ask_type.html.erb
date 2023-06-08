@@ -1,6 +1,10 @@
-<% @types.each do |type| %>
-  <%= simple_form_for Incident.new, url: set_type_path(@incident), method: :patch do |f| %>
-    <%= f.input :incident_type, as: :hidden, input_html: { value: type } %>
-    <button type="submit" class="button"><%= type %></button>
+<div class="main-container">
+  <% @types.each do |type| %>
+    <%= simple_form_for Incident.new, url: set_type_path(@incident), method: :patch do |f| %>
+      <%= f.input :incident_type, as: :hidden, input_html: { value: type } %>
+      <button type="submit" class="button"><%= type %></button>
+    <% end %>
   <% end %>
-<% end %>
+  <hr>
+  <%= link_to "Back to Home", undo_create_incident_path(@incident), class: "button" %>
+</div>
