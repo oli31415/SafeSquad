@@ -53,8 +53,11 @@
  </style>
 
 <div id="popup-waiting" class="hidden-popup">
-<img src="<%= asset_path('scan-1912_256.gif') %>" alt="Radar Scan GIF">
-  <p>We are looking for someone around you!</p>
+  <div>
+    <img src="<%= asset_path('scan-1912_256.gif') %>" alt="Radar Scan GIF">
+    <p>We are looking for someone around you!</p>
+    <%# <%= link_to "Cancel Request", undo_create_incident_path(@incident), class: "button" %>
+  </div>
 </div>
 
 <% unless @incident.nil? %>
