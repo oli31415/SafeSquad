@@ -2,3 +2,32 @@
   width: 100%;
   margin: 40px auto;
 }
+
+
+.hidden-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  color: white;
+  text-align: center;
+  padding-top: 50%;
+  font-size: 24px;
+}
+
+.hidden-popup button {
+  height: 60px;
+  width: 80%;
+  padding:  0px;
+  border-style: hidden;
+  outline:  none;
+  background: #f1d00a;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  margin: 10px auto;
+}
