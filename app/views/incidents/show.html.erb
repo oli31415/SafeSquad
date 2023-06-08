@@ -17,8 +17,7 @@
   <% end %>
 
   <div class="map-container">
-  <div id="map"></div>
-    <%# <img id="map" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+FF0000(8.5495,47.3593)/8.5495,47.3593,16.5,0,0/600x1000?access_token=pk.eyJ1Ijoic2FzaGFzY2hlcnJlciIsImEiOiJjbGlsdDhqNWswYzQ1M2ZwajNlNThnc2NhIn0.lHGiHoU0aSaDC4UmjdyRvA'> %>
+    <div id="map"></div>
   </div>
 
   <div class="user-container">
@@ -54,6 +53,24 @@
       <%= link_to "Close the case", close_path(@incident), class: "button" %>
     <% end %>
   </div>
+
+  <% unless @user_is_affected %>
+    <% if @responder.has_accepted? %>
+
+      <script>
+        setTimeout(() => {
+          var popup = document.getElementById("popup");
+          popup.style.display = "block";
+        }, 10000); // 10 seconds delay
+      </script>
+
+      <div id="popup" class="hidden-popup">
+        <p>Have you arrived yet?</p>
+        <button onclick="location.href='<%= helper_page_path(@incident) %>'">I am here</button>
+        <button onclick="location.href='<%= incident_page_path(@incident) %>'">I haven't arrived yet</button>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
 <script>
@@ -77,14 +94,3 @@
 
   map.addControl(new mapboxgl.NavigationControl());
 </script>
-
-<%# this will eventually be for the pop-up %>
-<% unless @user_is_affected %>
-  <% if @responder.has_accepted %>
-    <script>
-      setTimeout(() => {
-        console.log("Have you arrived?"); // do this
-      }, 10000);                          // after 10000 ms
-    </script>
-  <% end %>
-<% end %>
