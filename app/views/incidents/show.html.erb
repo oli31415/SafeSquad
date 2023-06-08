@@ -10,7 +10,7 @@
     <% end %>
   <% else %>
     <% unless @responder.nil? %>
-      <h2 class="title-responderpage"><%= @responder.user.first_name %> is on the way to you!</h2>
+      <h2 class="title-responderpage"><%= @responder.user.first_name %> is <%= @responder.has_arrived? ? "here" : "on the way to you" %>!</h2>
     <% else %>
       <h2 class="title-responderpage">We've sent out the notification!</h2>
     <% end %>
