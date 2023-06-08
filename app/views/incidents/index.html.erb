@@ -1,7 +1,7 @@
 <div class="main-container">
   <div class="profile-container">
     <div class="avatar-profile">
-      <img src="<%= image_path('test_avatar.webp') %>" alt="" class="avatar-image">
+      <img src="<%= image_path('<%= current_user.first_name %>_avatar.jpeg') %>" alt="" class="avatar-image"><%=  %>
       <div>
         <h1>My Past Missions</h1>
       </div>
