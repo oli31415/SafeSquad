@@ -13,6 +13,7 @@ class IncidentsController < ApplicationController
     else
       redirect_to root_path, notice: "Incident could not be created."
     end
+    return incident.id
   end
 
   def show
@@ -75,7 +76,7 @@ class IncidentsController < ApplicationController
     @responder = @incident.responders.find { |r| r.user == current_user && !r.incident.is_closed? }
     @responder.has_arrived = true
     @responder.save
-    
+
     # @incident -> @incident.user
   end
 

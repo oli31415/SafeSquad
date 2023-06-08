@@ -22,9 +22,74 @@
   </div>
 </div>
 
+<style>
+  .hidden-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    color: white;
+    text-align: center;
+    padding-top: 50%;
+    font-size: 24px;
+  }
+
+  .hidden-popup button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+ </style>
+
+<div id="popup-waiting" class="hidden-popup">
+<img src="<%= asset_path('scan-1912_256.gif') %>" alt="Radar Scan GIF">
+  <p>We are looking for someone around you!</p>
+</div>
+
 <% unless @incident.nil? %>
   <%= link_to "most recent incident (just for development)", incident_page_path(@incident), class: "btn btn-primary" %>
 <% end %>
+
+<script>
+  var redButton = document.getElementById("red-button");
+  var popup = document.getElementById("popup-waiting");
+
+  redButton.addEventListener("click", function() {
+    event.preventDefault();
+    console.log("clicked");
+    popup.style.display = "block";
+
+    const url = "<%= create_incident_path %>"
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: JSON.stringify({ incident: { incident_type: 'red' }})
+    })
+
+    setTimeout(function() {
+
+      window.location.href = "incidents/<%= Incident.last.id + 1 %>";
+      // window.location.href = "<%= incident_page_path(Incident.last) %>";
+    }, 15000);
+  });
+
+</script>
+
+
 
 <!-- For testing purpose -->
 
