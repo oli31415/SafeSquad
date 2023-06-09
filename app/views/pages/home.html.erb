@@ -50,7 +50,7 @@
     margin-right: 10px;
     font-size: 16px;
   }
- </style>
+</style>
 
 <div id="popup-waiting" class="hidden-popup">
   <div>
@@ -60,11 +60,19 @@
   </div>
 </div>
 
+<!--
 <% unless @incident.nil? %>
   <%= link_to "most recent incident (just for development)", incident_page_path(@incident), class: "btn btn-primary" %>
 <% end %>
+-->
 
 <script>
+  document.addEventListener("keyup", function(event) {
+    if(event.key == "Enter") {
+      window.location.href = "<%= notification_path %>";
+    }
+  })
+
   var redButton = document.getElementById("red-button");
   var popup = document.getElementById("popup-waiting");
 

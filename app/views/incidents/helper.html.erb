@@ -1,9 +1,12 @@
+<!--
 <h1>This is the helper page</h1>
 <p><%= @incident.user.first_name %> (<%= @incident.user %>) is the affected user</p>
+-->
 <div class="main-container">
   <h2> About <%= @incident.user.first_name %> </h2>
   <div class="img-container">
-    <img src="<%= image_path("#{@incident.user.first_name}_avatar.jpeg") %>" style="width: 100%" alt="">
+    <% image_source = ["John", "Jane"].include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+    <img src="<%= image_path(image_source) %>" style="width: 100%" alt="">
   </div>
   <div class="helper-subcontainer">
     <h3> Medical data </h3>

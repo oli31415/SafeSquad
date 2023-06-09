@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "responders/:id/cancel", to: "responders#destroy", as: "cancel" # cancel response
   get "incidents/:id/close", to: "incidents#close", as: "close" # close the case
   get "incidents/:id/cancel", to: "incidents#destroy", as: "undo_create_incident"
+  get "n", to: "incidents#notification", as: "notification"
 
   get "incidents/:id/type", to: "incidents#ask_type", as: "ask_type"
   patch "incidents/:id/", to: "incidents#set_type", as: "set_type"

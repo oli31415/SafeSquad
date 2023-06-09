@@ -1,5 +1,7 @@
+<!--
 <h1>incident page (id=<%= @incident.id %>)</h1>
 <p>I am the <%= @user_is_affected ? "affected" : "responder" %> <%= @current_user.first_name %></p>
+-->
 
 <div class="main-container container">
   <% unless @user_is_affected %>
@@ -26,10 +28,11 @@
       <h3>Waiting for responders...</h3>
     <% else %>
       <% other_user = other_user.user %>
-      <img src="<%= image_path("#{other_user.first_name}_avatar.jpeg") %>" alt="" id="incident-show-avatar" class="avatar">
+      <% image_source = ["John", "Jane"].include?(other_user.first_name) ? "#{other_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+      <img src="<%= image_path(image_source) %>" alt="" id="incident-show-avatar" class="avatar">
       <div class="user-info">
         <div>
-          <h2><%= other_user.first_name + " " + other_user.last_name %></h2>
+          <h2><%= "#{other_user.first_name} #{other_user.last_name}" %></h2>
         </div>
       </div>
     <% end %>
@@ -37,7 +40,8 @@
 
   <div id="incident-container">
     <h3>Type of incident</h3>
-    <p><%= @incident.incident_type %></p>
+    <% i_type = @incident.incident_type == "red" ? "Serious Incident" : @incident.incident_type %>
+    <p><%= i_type %></p>
     <p>Address: Bellerivestrasse 201, 8008 Zurich</p>
   </div>
 
