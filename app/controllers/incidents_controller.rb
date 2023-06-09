@@ -96,6 +96,11 @@ class IncidentsController < ApplicationController
     redirect_to root_path
   end
 
+  def notification
+    @incident = Incident.last
+    authorize @incident
+  end
+
   private
 
   def make_responder(incident)

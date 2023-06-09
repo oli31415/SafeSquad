@@ -62,4 +62,8 @@ class IncidentPolicy < ApplicationPolicy
     # creator of incident is allowed to close the incident.
     record.user == user
   end
+
+  def notification?
+    true
+  end
 end

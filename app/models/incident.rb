@@ -1,13 +1,13 @@
 class Incident < ApplicationRecord
   belongs_to :user
-  has_many :responders
+  has_many :responders, dependent: :destroy
 
   def self.types
     return [
-      "many",
-      "different",
-      "types",
-      "here"
+      "Medical",
+      "Unpleasant encounter",
+      "Minor accident",
+      "Other"
     ]
   end
 end

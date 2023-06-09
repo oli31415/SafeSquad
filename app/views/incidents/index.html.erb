@@ -1,7 +1,8 @@
 <div class="main-container">
   <div class="profile-container">
     <div class="avatar-profile">
-      <img src="<%= image_path("#{current_user.first_name}_avatar.jpeg") %>" alt="" class="avatar-image"><%=  %>
+      <% image_source = ["John", "Jane"].include?(current_user.first_name) ? "#{current_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+      <img src="<%= image_path(image_source) %>" alt="" class="avatar-image">
       <div>
         <h1>My Past Missions</h1>
       </div>
@@ -20,7 +21,8 @@
           <% name = r.nil? ? "Missing responder" : r.user.first_name %>
 
           <h3><%= name %> helped you</h3>
-          <p>with <%= incident.incident_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
+          <% i_type = incident.incident_type == "red" ? "Serious Incident" : incident.incident_type %>
+          <p>with <%= i_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
           <%# <p>You saved 12 kittens from certain death.</p> %>
         </div>
       </div>
@@ -37,7 +39,8 @@
           <% month = @months[date.month.to_i - 1] %>
 
           <h3>You helped <%= responder.incident.user.first_name %></h3>
-          <p>with <%= responder.incident.incident_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
+          <% i_type = responder.incident.incident_type == "red" ? "Serious Incident" : responder.incident.incident_type %>
+          <p>with <%= i_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
           <%# <p>You cured chlamydia</p> %>
         </div>
       </div>
