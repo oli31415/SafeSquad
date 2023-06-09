@@ -1,7 +1,11 @@
 .avatar {
   border-radius: 50%;
-  aspect-ratio: 1 / 1;
+  // aspect-ratio: 1 / 1;
 }
+#incident-show-avatar {
+  width: 80px;
+}
+
 .avatar-large {
   width: 56px;
   border-radius: 50%;
@@ -17,8 +21,4 @@
   border-radius: 0px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
-}
-
-#incident-show-avatar {
-  width: 120px;
 }
