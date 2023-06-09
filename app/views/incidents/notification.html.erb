@@ -51,7 +51,8 @@
     <p><%= @incident.user.first_name %> is looking for help!</p>
     <% image_source = ["John", "Jane"].include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
     <img src="<%= image_path(image_source) %>" class="avatar-image">
-    <p>Incident Type: <%= @incident.incident_type %></p>
+    <% i_type = @incident.incident_type == "red" ? "Serious Incident" : @incident.incident_type %>
+    <p>Incident Type: <%= i_type %></p>
     <%# <%= link_to "Cancel Request", undo_create_incident_path(@incident), class: "button" %>
     <%= link_to "Open Notification", incident_page_path(@incident), class: "button", style: "display: flex; align-items: center; justify-content: center;" %>
   </div>
