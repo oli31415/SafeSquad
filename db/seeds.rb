@@ -1,5 +1,5 @@
-# Responder.delete_all
-# Incident.delete_all
+Responder.delete_all
+Incident.delete_all
 User.delete_all # should also delete all responders and Incidents
 puts "Cleared the data base"
 
