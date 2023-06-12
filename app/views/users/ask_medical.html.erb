@@ -1,0 +1,37 @@
+<div class="main-container">
+  <h2>Edit Profile</h2>
+
+  <%= form_for @user, url: set_medical_path(@user), method: :patch do |f| %>
+    <div class="profile-section">
+      <div class="form-field">
+        <%= f.label :languages, class: 'white-label' %>
+        <%= f.text_field :languages, value: @user.languages %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :height, class: 'white-label' %>
+        <%= f.text_field :height, value: @user.height %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :medication, class: 'white-label' %>
+        <%= f.text_field :medication, value: @user.medication %>
+      </div>
+
+      <!-- Add more form fields as needed -->
+
+      <div class="form-field">
+        <h3>Medical Conditions</h3>
+      </div>
+      <div class="dropdown-container">
+        <%= f.select :medical_info_id, options_for_select(MedicalInfo.list.first.map { |info| [info] }), {}, multiple: false, class: 'edit-field' %>
+      </div>
+
+      <div class="form-field">
+        <div class="actions" style="margin-top: 10px;">
+          <%= f.submit 'Save', class: 'btn btn-primary yellow-button-sash' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
