@@ -1,13 +1,120 @@
-.button-round {
-  background-color: white;
-  border: white;
-  border-radius: 50%;
-  color: black;
-  padding: 20px;
+#red-button {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-color: #ad0404;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6464), to(#d14949));
+  background-image: -webkit-linear-gradient(top, #ce2e2e, #8d0f0f);
+  background-image: -moz-linear-gradient(top, #ce2e2e, #8d0f0f);
+  background-image: -ms-linear-gradient(top, #ce2e2e, #8d0f0f);
+  background-image: -o-linear-gradient(top, #ce2e2e, #8d0f0f);
+  font-size: 50px;
+  margin: 50px auto 100px auto;
+  color: #d7d6d6;
+  width: 200px;
+  height: 200px;
+  position: relative;
   text-align: center;
-  text-decoration: none;
-  display: flex;
-  justify-items: center;
-  font-size: 16px;
-  margin: 2px 4px;
+  line-height: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 8px #d7d6d6, inset 0px 2px 3px #fff;
+  border: solid 1px transparent;
 }
+
+#red-button:before {
+  content: "";
+  display: block;
+  background: #d7d6d6;
+  border-top: 2px solid #d7d6d6;
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  bottom: -18px;
+  right: -18px;
+  z-index: -1;
+  border-radius: 50%;
+  box-shadow: inset 0px 8px 48px #ddd, 0px 3px 100px #ad0404;
+}
+
+#yellow-button {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffc004;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6464), to(#d14949));
+  background-image: -webkit-linear-gradient(top, #ceb62e, #d19e03);
+  background-image: -moz-linear-gradient(top, #ceb62e, #d19e03);
+  background-image: -ms-linear-gradient(top, #ceb62e, #d19e03);
+  background-image: -o-linear-gradient(top, #ceb62e, #d19e03);
+  font-size: 50px;
+  margin: 100px auto 50px auto;
+  color: #d7d6d6;
+  width: 175px;
+  height: 175px;
+  position: relative;
+  text-align: center;
+  line-height: 175px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 8px #d7d6d6, inset 0px 2px 3px #fff;
+  border: solid 1px transparent;
+}
+
+#yellow-button:before {
+  content: "";
+  display: block;
+  background: #d7d6d6;
+  border-top: 2px solid #d7d6d6;
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  bottom: -18px;
+  right: -18px;
+  z-index: -1;
+  border-radius: 50%;
+  box-shadow: inset 0px 8px 48px #ddd, 0px 3px 100px rgba(225, 177, 2, 0.621);
+}
+
+// design for the red button
+// #red-button {
+//   display: grid;
+//   justify-content: center;
+//   align-content: center;
+//   width: 200px;
+//   height: 200px;
+//   margin: 50px auto;
+//   color: hsl(0, 86%, 48%);
+//   cursor: pointer;
+//   padding: 0.35em 1em 0.35em 1.8em;
+//   border: 0.3em double hsl(0, 86%, 48%);
+//   border-radius: 50%;
+//   background: none;
+//   perspective: 2em;
+//   font-size: 2em;
+//   font-weight: 900;
+//   letter-spacing: 0.5em;
+//   box-shadow: inset 0px 0px 3em 0px hsl(0, 86%, 48%),
+//     0px 0px 5em 0px hsl(0, 86%, 48%);
+// }
+
+
+// // design for the yellow button
+// #yellow-button {
+//   display: grid;
+//   justify-content: center;
+//   align-content: center;
+//   width: 175px;
+//   height:175px;
+//   margin: 50px auto;
+//   color: #F1D00A;
+//   cursor: pointer;
+//   padding: 0.35em 1em 0.35em 1.8em;
+//   border: 0.3em double #F1D00A;
+//   border-radius: 50%;
+//   background: none;
+//   perspective: 2em;
+//   font-size: 2em;
+//   font-weight: 900;
+//   letter-spacing: 0.5em;
+//   box-shadow: inset 0px 0px 3em 0px #F1D00A,
+//     0px 0px 5em 0px #F1D00A;
+// }

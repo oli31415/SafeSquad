@@ -1,7 +1,14 @@
+MedicalInfo.delete_all
 Responder.delete_all
 Incident.delete_all
 User.delete_all # should also delete all responders and Incidents
 puts "Cleared the data base"
+
+infos = MedicalInfo.list
+infos.first.each_with_index do |_info, index|
+  MedicalInfo.create!(title: infos.first[index], description: infos.last[index])
+end
+puts "Medical infos have been generated."
 
 john = User.create!(
   email: 'john@example.com',

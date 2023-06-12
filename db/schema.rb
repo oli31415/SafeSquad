@@ -26,6 +26,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_074644) do
     t.index ["user_id"], name: "index_incidents_on_user_id"
   end
 
+  create_table "medical_infos", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "responders", force: :cascade do |t|
     t.bigint "incident_id", null: false
     t.bigint "user_id", null: false
@@ -48,11 +55,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_074644) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.bigint "medical_info_id"
+    t.string "languages"
+    t.string "height"
+    t.string "medication"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["medical_info_id"], name: "index_users_on_medical_info_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "incidents", "users"
   add_foreign_key "responders", "incidents"
   add_foreign_key "responders", "users"
+  add_foreign_key "users", "medical_infos"
 end

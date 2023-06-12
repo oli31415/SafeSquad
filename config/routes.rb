@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'missions/show'
+  # resources :users, only: [:show, :edit, :update]
   devise_for :users
 
   # notes: everything is only possible while logged in.
@@ -29,4 +30,7 @@ Rails.application.routes.draw do
 
   get "profile/:id", to: "users#show", as: "profile"
   get "missions", to: "incidents#index", as: "missions"
+  get "profile/:id/medical", to: "users#ask_medical", as: "ask_medical"
+  patch "profile/:id/medical", to: "users#set_medical", as: "set_medical"
+
 end
