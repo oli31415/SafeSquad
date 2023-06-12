@@ -1,13 +1,44 @@
-.button-round {
-  background-color: white;
-  border: white;
+// design for the red button
+#red-button {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  width: 200px;
+  height: 200px;
+  margin: 50px auto;
+  color: hsl(0, 86%, 48%);
+  cursor: pointer;
+  padding: 0.35em 1em 0.35em 1.8em;
+  border: 0.3em double hsl(0, 86%, 48%);
   border-radius: 50%;
-  color: black;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  justify-items: center;
-  font-size: 16px;
-  margin: 2px 4px;
+  background: none;
+  perspective: 2em;
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 0.5em;
+  box-shadow: inset 0px 0px 3em 0px hsl(0, 86%, 48%),
+    0px 0px 5em 0px hsl(0, 86%, 48%);
+}
+
+
+// design for the yellow button
+#yellow-button {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  width: 175px;
+  height:175px;
+  margin: 50px auto;
+  color: #F1D00A;
+  cursor: pointer;
+  padding: 0.35em 1em 0.35em 1.8em;
+  border: 0.3em double #F1D00A;
+  border-radius: 50%;
+  background: none;
+  perspective: 2em;
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 0.5em;
+  box-shadow: inset 0px 0px 3em 0px #F1D00A,
+    0px 0px 5em 0px #F1D00A;
 }
