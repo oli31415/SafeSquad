@@ -28,6 +28,18 @@ class IncidentPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def ask_review?
+    return false unless record.is_closed?
+
+    record.user == user
+  end
+
+  def set_review?
+    return false unless record.is_closed?
+
+    record.user == user
+  end
+
   def show?
     !record.is_closed?
   end

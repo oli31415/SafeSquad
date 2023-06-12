@@ -43,7 +43,8 @@ class IncidentsController < ApplicationController
     @months = MONTHS
     @incidents = current_user.incidents
     authorize @incidents
-    @responders = current_user.responders
+    @incidents = @incidents.sort_by(&:id).reverse
+    @responders = current_user.responders.sort_by(&:id).reverse
   end
 
   def chat
@@ -70,6 +71,27 @@ class IncidentsController < ApplicationController
     end
   end
 
+  def ask_review
+    @incident = Incident.find(params[:id])
+    authorize @incident
+    @responder = @incident.responders.find { |r| r.has_accepted? }
+
+    redirect_to missions_path, notice: "No need to review." if @incident.responders.empty?
+  end
+
+  def set_review
+    incident = Incident.find(params[:id])
+    incident.review_rating = params[:review_rating]
+    incident.review_text = params[:incident][:review_text] unless params[:incident][:review_text] == ""
+    authorize incident
+
+    if incident.save
+      redirect_to missions_path
+    else
+      redirect_back fallback_location: incident_page_path(@incident), notice: "Review could not be saved."
+    end
+  end
+
   def helper
     # update responder.has_arrived so that the text changes for affected
     @responder = @incident.responders.find { |r| r.user == current_user && !r.incident.is_closed? }
@@ -83,7 +105,7 @@ class IncidentsController < ApplicationController
     @incident.is_closed = true
 
     if @incident.save
-      redirect_to root_path
+      redirect_to review_page_path(@incident)
     else
       redirect_back fallback_location: root_path, notice: "Incident could not be closed."
     end
@@ -125,6 +147,11 @@ class IncidentsController < ApplicationController
   def user_not_authorized
     # when one user closes the case, the other user should be redirected to the root
     # flash[:alert] = "You are not authorized to perform this action."
-    redirect_to root_path
+    @incident = Incident.find(params[:id])
+    if current_user == @incident.user && @incident.is_closed?
+      redirect_to review_page_path(@incident)
+    else
+      redirect_to root_path
+    end
   end
 end

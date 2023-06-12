@@ -33,6 +33,28 @@
       <div class="user-info">
         <div>
           <h2><%= "#{other_user.first_name} #{other_user.last_name}" %></h2>
+          <% if @incident.user == current_user %>
+            <% ratings = other_user.responders.map { |r| r.incident.review_rating }.reject { |num| num.nil? } %>
+            <% unless ratings.empty? %>
+              <% average_rating = (ratings.sum.to_f / ratings.length).round(1) %>
+
+              <div class="user-rating">
+                <p><%= average_rating %></p>
+                <div class="stars">
+                  <% 5.times do |num| %>
+                    <% if num < average_rating.floor %>
+                      <p class="star yellow-star">★</p>
+                    <% else %>
+                      <p class="star">★</p>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+
+            <% else %>
+              <p>This user does not have any reviews yet.</p>
+            <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>

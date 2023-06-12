@@ -9,41 +9,90 @@
     </div>
   </div>
 
-  <div>
-    <h3>My Past Incidents</h3>
-    <% @incidents.each do |incident| %>
-      <div class="profile-section">
-        <div class="mission-card">
-          <% date = incident.created_at.to_datetime %>
-          <% year = date.year == Time.now.year ? "" : " #{date.year}" %>
-          <% month = @months[date.month.to_i - 1] %>
-          <% r = incident.responders.all.find { |r| r.has_accepted? } %>
-          <% name = r.nil? ? "Missing responder" : r.user.first_name %>
+  <% if @incidents.empty? && @responders.empty? %>
+    <h3>You haven't been involved in anything yet.</h3>
+  <% end %>
 
-          <h3><%= name %> helped you</h3>
-          <% i_type = incident.incident_type == "red" ? "Serious Incident" : incident.incident_type %>
-          <p>with <%= i_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
-          <%# <p>You saved 12 kittens from certain death.</p> %>
+  <% unless @incidents.empty? %>
+    <div>
+      <h3>My Past Incidents</h3>
+      <% @incidents.each do |incident| %>
+        <div class="profile-section">
+          <div class="mission-card">
+            <% date = incident.created_at.to_datetime %>
+            <% year = date.year == Time.now.year ? "" : " #{date.year}" %>
+            <% month = @months[date.month.to_i - 1] %>
+            <% r = incident.responders.all.find { |r| r.has_accepted? } %>
+            <% name = r.nil? ? "You didn't need anyone" : "#{r.user.first_name} helped you" %>
+
+            <h3><%= name %></h3>
+            <% i_type = incident.incident_type == "red" ? "Serious Incident" : incident.incident_type %>
+            <p>with <%= i_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
+
+            <% unless incident.review_rating.nil? %>
+              <hr>
+              <div class="review-box">
+                <div class="review-title">
+                  <p>Your note to <%= r.user.first_name %>:</p>
+                  <div class="stars">
+                    <% 5.times do |num| %>
+                      <% if num < incident.review_rating %>
+                        <p class="star yellow-star">★</p>
+                      <% else %>
+                        <p class="star">★</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <% unless incident.review_text.nil? %>
+                  <p><%= incident.review_text %></p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 
-  <div>
-    <h3>Incidents I have helped on</h3>
-    <% @responders.each do |responder| %>
-      <div class="profile-section">
-        <div class="mission-card">
-          <% date = responder.incident.created_at.to_datetime %>
-          <% year = date.year == Time.now.year ? "" : " #{date.year}" %>
-          <% month = @months[date.month.to_i - 1] %>
+  <% unless @responders.empty? %>
+    <div>
+      <h3>Incidents I have helped on</h3>
+      <% @responders.each do |responder| %>
+        <div class="profile-section">
+          <div class="mission-card">
+            <% i = responder.incident %>
+            <% date = i.created_at.to_datetime %>
+            <% year = date.year == Time.now.year ? "" : " #{date.year}" %>
+            <% month = @months[date.month.to_i - 1] %>
 
-          <h3>You helped <%= responder.incident.user.first_name %></h3>
-          <% i_type = responder.incident.incident_type == "red" ? "Serious Incident" : responder.incident.incident_type %>
-          <p>with <%= i_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
-          <%# <p>You cured chlamydia</p> %>
+            <h3>You helped <%= i.user.first_name %></h3>
+            <% i_type = i.incident_type == "red" ? "Serious Incident" : i.incident_type %>
+            <p>with <%= i_type %> on <%= "#{month}, #{date.day}#{year}" %></p>
+
+            <% unless i.review_rating.nil? %>
+              <hr>
+              <div class="review-box">
+                <div class="review-title">
+                  <p><%= i.user.first_name %>'s note to you:</p>
+                  <div class="stars">
+                    <% 5.times do |num| %>
+                      <% if num < i.review_rating %>
+                        <p class="star yellow-star">★</p>
+                      <% else %>
+                        <p class="star">★</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <% unless i.review_text.nil? %>
+                  <p><%= i.review_text %></p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
