@@ -3,6 +3,14 @@
   margin: 40px auto;
 }
 
+.user-rating {
+  display: flex;
+  gap: 5px;
+}
+
+.user-rating p {
+  font-size: 20px;
+}
 
 .hidden-popup {
   display: none;

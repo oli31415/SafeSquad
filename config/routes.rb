@@ -13,11 +13,14 @@ Rails.application.routes.draw do
   get "responders/:id", to: "responders#accept", as: "accept" # accept incident
   get "responders/:id/cancel", to: "responders#destroy", as: "cancel" # cancel response
   get "incidents/:id/close", to: "incidents#close", as: "close" # close the case
-  get "incidents/:id/cancel", to: "incidents#destroy", as: "undo_create_incident"
-  get "n", to: "incidents#notification", as: "notification"
+  get "incidents/:id/cancel", to: "incidents#destroy", as: "undo_create_incident" # delete the incident on incident type page
+  get "n", to: "incidents#notification", as: "notification" # TODO: change
 
-  get "incidents/:id/type", to: "incidents#ask_type", as: "ask_type"
-  patch "incidents/:id/", to: "incidents#set_type", as: "set_type"
+  get "incidents/:id/review", to: "incidents#ask_review", as: "review_page" # review page
+  patch "incidents/:id/review", to: "incidents#set_review", as: "set_review" # save review
+
+  get "incidents/:id/type", to: "incidents#ask_type", as: "ask_type" # ask incident_type page
+  patch "incidents/:id/type", to: "incidents#set_type", as: "set_type" # save incident_type
 
   # anyone can get here, but the display dependes on has_accepted & current_user:
   get "incidents/:id", to: "incidents#show", as: "incident_page" # get to responder page & create responder
