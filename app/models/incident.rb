@@ -5,8 +5,8 @@ class Incident < ApplicationRecord
   def self.types
     return [
       "Medical",
-      "Unpleasant encounter",
-      "Minor accident",
+      "Unpleasant Encounter",
+      "Minor Accident",
       "Other"
     ]
   end

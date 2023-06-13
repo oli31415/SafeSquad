@@ -12,7 +12,7 @@
     <% end %>
   <% else %>
     <% unless @responder.nil? %>
-      <h2 class="title-responderpage"><%= @responder.user.first_name %> is <%= @responder.has_arrived? ? "here" : "on the way to you" %>!</h2>
+      <h2 class="title-responderpage"><%= @responder.user.first_name %> is <%= @responder.has_arrived? ? "here" : "on their way to you" %>!</h2>
     <% else %>
       <h2 class="title-responderpage">We've sent out the notification!</h2>
     <% end %>
@@ -105,17 +105,17 @@
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [8.5495, 47.3593], // Zurich coordinates
+    center: [8.5407, 47.3769], // Poststrasse 5 coordinates
     zoom: 14
   });
 
   var marker = new mapboxgl.Marker()
-    .setLngLat([8.5495, 47.3593]) // Zurich coordinates
+    .setLngLat([8.5407, 47.3769]) // Poststrasse 5 coordinates
     .addTo(map);
 
   var popup = new mapboxgl.Popup()
-    .setLngLat([8.5495, 47.3593]) // Zurich coordinates
-    .setHTML('<p style="color: black;">Bellerivestrasse 201, 8008 Zurich</p>')
+    .setLngLat([8.5407, 47.3769]) // Poststrasse 5 coordinates
+    .setHTML('<p style="color: black;">Poststrasse 5, 8001 Zurich</p>')
     .addTo(map);
 
   map.addControl(new mapboxgl.NavigationControl());
