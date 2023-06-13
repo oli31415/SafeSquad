@@ -45,6 +45,10 @@
   }
 </style>
 
+<audio id="notification-sound">
+  <source src="<%= asset_path('security-alarm.mp3') %>" type="audio/mpeg">
+</audio>
+
 <div id="popup-waiting" class="not-hidden-popup">
   <div class="main-container">
     <p><%= @incident.user.first_name %> is looking for help!</p>
@@ -56,3 +60,14 @@
     <%= link_to "Open Notification", incident_page_path(@incident), class: "button", style: "display: flex; align-items: center; justify-content: center;" %>
   </div>
 </div>
+
+<script>
+  var sound = document.getElementById("notification-sound");
+
+  function playSound() {
+    sound.play();
+  }
+
+  // Trigger the sound when the pop-up is shown
+  document.addEventListener("DOMContentLoaded", playSound);
+</script>
