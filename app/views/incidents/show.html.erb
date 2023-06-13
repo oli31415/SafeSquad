@@ -1,8 +1,3 @@
-<!--
-<h1>incident page (id=<%= @incident.id %>)</h1>
-<p>I am the <%= @user_is_affected ? "affected" : "responder" %> <%= @current_user.first_name %></p>
--->
-
 <div class="main-container container">
   <% unless @user_is_affected %>
     <% unless @responder.has_accepted? %>
@@ -25,7 +20,9 @@
   <div class="user-container">
     <% other_user = @user_is_affected ? @responder : @incident %>
     <% if other_user.nil? %>
-      <h3>Waiting for responders...</h3>
+      <a href="<%= incident_page_path(@incident) %>">
+        <h3>Waiting for responders...</h3>
+      </a>
     <% else %>
       <% other_user = other_user.user %>
       <% image_source = User.list.include?(other_user.first_name) ? "#{other_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
