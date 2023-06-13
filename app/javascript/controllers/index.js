@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import AlarmSubscriptionController from "./alarm_subscription_controller"
+application.register("alarm-subscription", AlarmSubscriptionController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

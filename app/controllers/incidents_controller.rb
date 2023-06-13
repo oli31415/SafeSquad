@@ -11,7 +11,12 @@ class IncidentsController < ApplicationController
     authorize incident
 
     if incident.save
-      redirect_to searching_path
+      if incident.incident_type == "yellow"
+        redirect_to ask_type_path(incident)
+        return 0
+      end
+
+      redirect_to searching_path(incident)
       # redirect_to incident_page_path(Incident.last)
     else
       redirect_to root_path, notice: "Incident could not be created."
@@ -22,6 +27,7 @@ class IncidentsController < ApplicationController
   def show
     @user_is_affected = @incident.user == current_user # use this to display either for affected or helper
     if @user_is_affected && @incident.incident_type == "yellow"
+      # raise
       redirect_to ask_type_path(@incident)
       return 0
     end
@@ -65,7 +71,7 @@ class IncidentsController < ApplicationController
     authorize incident
 
     if incident.save
-      redirect_to incident_page_path(incident)
+      redirect_to searching_path(incident) # incident_page_path(incident)
     else
       redirect_to root_path, notice: "Incident could not be created."
     end
@@ -128,8 +134,10 @@ class IncidentsController < ApplicationController
   end
 
   def searching
-    @incident = Incident.all.find {|i| i.user == current_user && !i.is_closed? }
+    # @incident = Incident.all.find {|i| i.user == current_user && !i.is_closed? }
+    @incident = Incident.find(params[:id])
     authorize @incident
+    AlarmChannel.broadcast_to("alarm", { url: notification_path, user_id: @incident.user.id }) # (incident)
   end
 
   private
