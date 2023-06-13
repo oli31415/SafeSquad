@@ -105,7 +105,11 @@ class IncidentsController < ApplicationController
     @incident.is_closed = true
 
     if @incident.save
-      redirect_to review_page_path(@incident)
+      if @incident.responders.find { |r| r.has_accepted }.nil?
+        redirect_to root_path
+      else
+        redirect_to review_page_path(@incident)
+      end
     else
       redirect_back fallback_location: root_path, notice: "Incident could not be closed."
     end

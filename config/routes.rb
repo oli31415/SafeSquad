@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get "n", to: "incidents#notification", as: "notification" # TODO: change
 
   get "incidents/:id/review", to: "incidents#ask_review", as: "review_page" # review page
-  patch "incidents/:id/review", to: "incidents#set_review", as: "set_review" # save review
+  put "incidents/:id/review", to: "incidents#set_review", as: "set_review" # save review
 
   get "incidents/:id/type", to: "incidents#ask_type", as: "ask_type" # ask incident_type page
   patch "incidents/:id/type", to: "incidents#set_type", as: "set_type" # save incident_type
