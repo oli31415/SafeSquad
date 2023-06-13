@@ -5,7 +5,7 @@
 <div class="main-container">
   <h2> About <%= @incident.user.first_name %> </h2>
   <div class="img-container">
-    <% image_source = ["John", "Jane"].include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+    <% image_source = User.list.include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
     <img src="<%= image_path(image_source) %>" style="width: 100%" alt="">
   </div>
   <div class="helper-subcontainer">
