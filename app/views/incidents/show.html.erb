@@ -28,7 +28,7 @@
       <h3>Waiting for responders...</h3>
     <% else %>
       <% other_user = other_user.user %>
-      <% image_source = ["John", "Jane"].include?(other_user.first_name) ? "#{other_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+      <% image_source = User.list.include?(other_user.first_name) ? "#{other_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
       <img src="<%= image_path(image_source) %>" alt="" id="incident-show-avatar" class="avatar">
       <div class="user-info">
         <div>

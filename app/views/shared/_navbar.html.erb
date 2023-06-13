@@ -15,7 +15,7 @@
         <% if user_signed_in? %>
           <li class="nav-item">
             <a href=<%= profile_path(current_user) %> class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <% image_source = ["John", "Jane"].include?(current_user.first_name) ? "#{current_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+              <% image_source = User.list.include?(current_user.first_name) ? "#{current_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
               <img src="<%= image_path(image_source) %>" alt="dropdown menu" class="avatar">
             </a>
           </li>

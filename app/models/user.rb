@@ -11,6 +11,10 @@ class User < ApplicationRecord
     MedicalInfo.find(medical_info_id)
   end
 
+  def self.list
+    return User.all.map{ |user| user.first_name }
+  end
+
   # attr_accessor :emergency_contact_mum, :emergency_contact_dad, :blood_type, :allergies, :medications, :height, :language, :medical_conditions
   # to make profile fields editable
 

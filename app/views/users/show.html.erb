@@ -1,7 +1,7 @@
 <div class="main-container">
   <div class="profile-container">
     <div class="avatar-profile">
-      <% image_source = ["John", "Jane"].include?(current_user.first_name) ? "#{current_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+      <% image_source = User.list.include?(current_user.first_name) ? "#{current_user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
       <img src="<%= image_path(image_source) %>" alt="" class="avatar-image">
       <div>
         <h1>My Profile</h1>

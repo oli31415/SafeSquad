@@ -5,14 +5,14 @@ class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :chat, :helper, :close]
 
   def create
-    # raise
     incident = Incident.new(incident_params)
     incident.user = current_user
     incident.is_closed = false
     authorize incident
 
     if incident.save
-      redirect_to incident_page_path(Incident.last)
+      redirect_to searching_path
+      # redirect_to incident_page_path(Incident.last)
     else
       redirect_to root_path, notice: "Incident could not be created."
     end
@@ -124,6 +124,11 @@ class IncidentsController < ApplicationController
 
   def notification
     @incident = Incident.last
+    authorize @incident
+  end
+
+  def searching
+    @incident = Incident.all.find {|i| i.user == current_user && !i.is_closed? }
     authorize @incident
   end
 
