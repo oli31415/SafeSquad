@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @incident = Incident.all.reverse.find { |i| !i.is_closed? }
   end
+
+  def fake_call
+  end
 end
