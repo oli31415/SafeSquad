@@ -46,13 +46,14 @@
 </style>
 
 <div id="popup-waiting" class="not-hidden-popup">
-  <div class="main-container">
-    <p><%= @incident.user.first_name %> is looking for help!</p>
-    <% image_source = ["John", "Jane"].include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
-    <img src="<%= image_path(image_source) %>" class="avatar-image">
-    <% i_type = @incident.incident_type == "red" ? "Serious Incident" : @incident.incident_type %>
-    <p>Incident Type: <%= i_type %></p>
-    <%# <%= link_to "Cancel Request", undo_create_incident_path(@incident), class: "button" %>
-    <%= link_to "Open Notification", incident_page_path(@incident), class: "button", style: "display: flex; align-items: center; justify-content: center;" %>
+  <div>
+    <img src="<%= asset_path('scan-1912_256.gif') %>" alt="Radar Scan GIF">
+    <p>We are looking for someone around you!</p>
   </div>
 </div>
+
+<script>
+  setTimeout(function() {
+    window.location.href = "<%= incident_page_path(@incident) %>";
+  }, 10000);
+</script>

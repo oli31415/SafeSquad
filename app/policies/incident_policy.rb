@@ -78,4 +78,8 @@ class IncidentPolicy < ApplicationPolicy
   def notification?
     true
   end
+
+  def searching?
+    true
+  end
 end
