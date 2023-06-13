@@ -26,7 +26,31 @@ jane = User.create!(
 )
 puts "Jane has been generated."
 
-users = [john, jane]
+oliver = User.create!(
+  email: 'oliver@example.com',
+  password: 'password',
+  first_name: 'Oliver',
+  last_name: 'Stofer'
+)
+puts "Oliver has been generated."
+
+sasha = User.create!(
+  email: 'sasha@example.com',
+  password: 'password',
+  first_name: 'Sasha',
+  last_name: 'Scherrer'
+)
+puts "Sasha has been generated."
+
+gioia = User.create!(
+  email: 'gioia@example.com',
+  password: 'password',
+  first_name: 'Gioia',
+  last_name: 'Hauri'
+)
+puts "Gioia has been generated."
+
+users = [john, jane, oliver, sasha, gioia]
 
 (5..10).to_a.sample.times do
   i = Incident.new(
