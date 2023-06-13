@@ -52,7 +52,7 @@
 <div id="popup-waiting" class="not-hidden-popup">
   <div class="main-container">
     <p><%= @incident.user.first_name %> is looking for help!</p>
-    <% image_source = ["John", "Jane"].include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
+    <% image_source = User.list.include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
     <img src="<%= image_path(image_source) %>" class="avatar-image">
     <% i_type = @incident.incident_type == "red" ? "Serious Incident" : @incident.incident_type %>
     <p>Incident Type: <%= i_type %></p>
