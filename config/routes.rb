@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   get "profile/:id/medical", to: "users#ask_medical", as: "ask_medical"
   patch "profile/:id/medical", to: "users#set_medical", as: "set_medical"
 
+  get '/fake_call', to: 'pages#fake_call'
+
 end
