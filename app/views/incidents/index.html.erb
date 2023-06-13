@@ -15,7 +15,7 @@
 
   <% unless @incidents.empty? %>
     <div>
-      <h3>My Past Incidents</h3>
+      <%# <h3>My Past Incidents</h3> %>
       <% @incidents.each do |incident| %>
         <div class="profile-section">
           <div class="mission-card">
@@ -48,6 +48,10 @@
                   <p><%= incident.review_text %></p>
                 <% end %>
               </div>
+            <% else %>
+              <% unless r.nil? %>
+                <%= link_to "Leave a review for #{r.user.first_name}", review_page_path(incident), class: "button" %>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -57,7 +61,7 @@
 
   <% unless @responders.empty? %>
     <div>
-      <h3>Incidents I have helped on</h3>
+      <%# <h3>Incidents I have helped on</h3> %>
       <% @responders.each do |responder| %>
         <div class="profile-section">
           <div class="mission-card">

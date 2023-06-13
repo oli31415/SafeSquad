@@ -1,9 +1,3 @@
-<%# Pages#home --> find me in app/views/pages/home.html.erb %>
-
-<%# Note - here you can find the CSS files
-    main-container, button-round --> app/assets/stylesheets/components
-    buttonpage-title, inner-buttonpage-container, button-red, button-yellow --> app/assets/stylesheets/pages/home%>
-
 <div class="main-container">
   <div id="inner-buttonpage-container">
     <div>
@@ -21,50 +15,6 @@
   </div>
 </div>
 
-<style>
-  .hidden-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    color: white;
-    text-align: center;
-    padding-top: 50%;
-    font-size: 24px;
-  }
-
-  .hidden-popup button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    text-decoration: none;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 16px;
-  }
-</style>
-
-<div id="popup-waiting" class="hidden-popup">
-  <div>
-    <img src="<%= asset_path('scan-1912_256.gif') %>" alt="Radar Scan GIF">
-    <p>We are looking for someone around you!</p>
-    <%# <%= link_to "Cancel Request", undo_create_incident_path(@incident), class: "button" %>
-  </div>
-</div>
-
-<!--
-<% unless @incident.nil? %>
-  <%= link_to "most recent incident (just for development)", incident_page_path(@incident), class: "btn btn-primary" %>
-<% end %>
--->
-
 <script>
   document.addEventListener("keyup", function(event) {
     if(event.key == "Enter") {
@@ -72,76 +22,4 @@
     }
   })
 
-  var redButton = document.getElementById("red-button");
-  var popup = document.getElementById("popup-waiting");
-
-  redButton.addEventListener("click", function() {
-    event.preventDefault();
-    console.log("clicked");
-    popup.style.display = "block";
-
-    const url = "<%= create_incident_path %>"
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-      },
-      body: JSON.stringify({ incident: { incident_type: 'red' }})
-    })
-
-    setTimeout(function() {
-
-      window.location.href = "incidents/<%= Incident.last.id + 1 %>";
-      // window.location.href = "<%= incident_page_path(Incident.last) %>";
-    }, 10000);
-  });
-
 </script>
-
-
-
-<!-- For testing purpose -->
-
-<!-- html for the main container
-<div class="main-container">
-  <p>thats the main container</p>
-</div>
--->
-
-<!-- html for the User Container incl. Input
-<div class="user-container">
-  <img src="<%= image_path("test_avatar.webp") %>" alt="" class="avatar">
-  <div class="user-info">
-    <div class="">
-      <h2>Jon James</h2>
-      <p>Whatever Jon James is doing.</p>
-    </div>
-  </div>
-</div>
--->
-
-<!-- html for the button container
-<div class="button-container">
-  <a href="#" class="button">Button 1</a>
-  <a href="#" class="button">Button 2</a>
-</div>
--->
-
-<!-- html for the different components
-<div class="button_round">
-  <a href="#">red</a>
-</div>
-
-<div class="button">
-  <a href="#">button</a>
-</div>
-
-<div class="map-container">
-  <p>here goes the map</p>
-</div>
-
-<div class="img-container">
-  <p>here goes the image</p>
-</div>
--->
