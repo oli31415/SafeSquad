@@ -1,16 +1,15 @@
 <div class="main-container">
-  <h2 id="buttonpage-title">Stay calm!</h2>
   <div id="inner-buttonpage-container">
     <div>
       <%= simple_form_for Incident.new, url: create_incident_path, method: :post do |f| %>
         <%= f.input :incident_type, as: :hidden, input_html: { value: "red" } %>
-        <button type="submit" class="button-round" id="red-button">Red Button</button>
+        <button type="submit" id="red-button"><span class="fa-solid fa-bolt"></span></button>
       <% end %>
     </div>
     <div>
       <%= simple_form_for Incident.new, url: create_incident_path, method: :post do |f| %>
         <%= f.input :incident_type, as: :hidden, input_html: { value: "yellow" } %>
-        <button type="submit" class="button-round" id="yellow-button">Yellow Button</button>
+        <button type="submit" id="yellow-button"><span class="fa-solid fa-bolt"></span></button>
       <% end %>
     </div>
   </div>
