@@ -2,7 +2,7 @@
   <% @types.each do |type| %>
     <%= simple_form_for Incident.new, url: set_type_path(@incident), method: :patch do |f| %>
       <%= f.input :incident_type, as: :hidden, input_html: { value: type } %>
-      <button type="submit" class="button"><%= type %></button>
+      <button type="submit" class="button button-text-black"><%= type %></button>
     <% end %>
   <% end %>
   <hr>
