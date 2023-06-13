@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get "responders/:id/cancel", to: "responders#destroy", as: "cancel" # cancel response
   get "incidents/:id/close", to: "incidents#close", as: "close" # close the case
   get "incidents/:id/cancel", to: "incidents#destroy", as: "undo_create_incident" # delete the incident on incident type page
-  get "n", to: "incidents#notification", as: "notification" # TODO: change
+  get "notification", to: "incidents#notification", as: "notification" # TODO: change
 
   get "incidents/:id/review", to: "incidents#ask_review", as: "review_page" # review page
   put "incidents/:id/review", to: "incidents#set_review", as: "set_review" # save review
