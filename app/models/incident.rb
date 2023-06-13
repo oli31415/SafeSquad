@@ -7,6 +7,7 @@ class Incident < ApplicationRecord
       "Medical",
       "Unpleasant encounter",
       "Minor accident",
+      "Walk me home",
       "Other"
     ]
   end
