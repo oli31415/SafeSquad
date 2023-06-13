@@ -29,7 +29,7 @@ class IncidentsController < ApplicationController
     # @responder (if there is no responder yet this will be nil)
 
     unless @user_is_affected # if we're not the affected user, make me a responder
-      if Responder.all.find { |r| r.user == current_user && !r.incident.is_closed? }.nil?
+      if @incident.responders.find { |r| r.user == current_user && !r.incident.is_closed? }.nil?
         @responder = make_responder(@incident)
       else
         @responder = @incident.responders.find { |r| r.user == current_user }
