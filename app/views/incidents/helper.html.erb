@@ -8,9 +8,14 @@
     <% image_source = User.list.include?(@incident.user.first_name) ? "#{@incident.user.first_name}_avatar.jpeg" : "test_avatar.webp" %>
     <img src="<%= image_path(image_source) %>" style="width: 100%" alt="">
   </div>
-  <div class="helper-subcontainer">
-    <h3> Medical data </h3>
-    <p>here will be the medical data</p>
+  <div id="helper-container">
+    <h3> Medical Information </h3>
+    <div id="helper-subcontainer">
+      <p> Medications: <span class="med-value"> <%= @incident.user.medication %> </span> </p>
+      <p> Height (cm): <span class="med-value"> <%= @incident.user.height %> </span> </p>
+      <p> Language: <span class="med-value"> <%= @incident.user.languages %> </span> </p>
+      <p> Medical condition: <span class="med-value"> <%= @incident.user.medical_info.title %> </span> </p>
+    </div>
   </div>
   <div id="emergency-container">
     <h3>Emergency numbers</h3>
@@ -31,6 +36,6 @@
     <a href="https://www.globalfirstaidcentre.org/first-aid/" class="external-links" target="_blank" >→ First Aid Instructions</a>
   </div>
   <div class="button-container" id="helper-button-container">
-    <%= link_to "close the case", close_path(@incident), class: "button" %>
+    <%= link_to "Close the case", close_path(@incident), class: "button" %>
   </div>
 </div>
