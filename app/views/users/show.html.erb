@@ -33,7 +33,7 @@
   <% end %>
 
 
-  <% unless current_user.medical_info_id.nil? %>
+  <% if !current_user.medical_info_id.nil? && current_user.medical_info.title != "" %>
     <div class="medical-info">
       <h3>Medical Conditions:</h3>
       <p><%= current_user.medical_info.title %></p>
