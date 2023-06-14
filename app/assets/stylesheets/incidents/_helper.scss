@@ -1,5 +1,24 @@
-.helper-subcontainer {
+#helper-container {
   margin-top: 30px;
+}
+
+#helper-subcontainer {
+  display: block;
+}
+
+#helper-subcontainer p {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+
+.med-value {
+  margin: 0;
+  color: white;
+}
+
+.helper-subcontainer h3 {
+  margin-top: 20px;
 }
 
 #helper-button-container {
@@ -23,8 +42,4 @@
 .number-value {
   margin: 0;
   color: white;
-}
-
-.helper-subcontainer h3 {
-  margin-top: 20px;
 }
