@@ -14,7 +14,10 @@
       <p> Medications: <span class="med-value"> <%= @incident.user.medication %> </span> </p>
       <p> Height (cm): <span class="med-value"> <%= @incident.user.height %> </span> </p>
       <p> Language: <span class="med-value"> <%= @incident.user.languages %> </span> </p>
-      <p> Medical condition: <span class="med-value"> <%= @incident.user.medical_info.title %> </span> </p>
+      <% medical_info = @incident.user.medical_info %>
+      <% if !medical_info.nil? && medical_info.title != "" %>
+        <p> Medical condition: <span class="med-value"> <%= medical_info.title %> </span> </p>
+      <% end %>
     </div>
   </div>
   <div id="emergency-container">
