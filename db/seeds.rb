@@ -15,18 +15,23 @@ puts "Medical infos have been generated."
 puts "Demo? (y/n)"
 answer = gets.chomp
 if ["yes", "y", "yea"].include?(answer.downcase)
-  s = User.find_by(first_name: "Sasha")
-  s.languages = ""
-  s.medication = ""
-  s.height = ""
-  s.medical_info_id = MedicalInfo.first.id # TODO
-  s.save!
+  us = ["Oliver", "Sasha", "Gioia"]
+  us.each do |u|
+    u = User.find_by(first_name: u)
+    u.languages = ""
+    u.medication = ""
+    u.height = ""
+    u.medical_info_id = MedicalInfo.first.id
+    u.save!
+  end
 
-  puts "Sasha has been reset"
+  puts "User medical info has been reset."
 
   num = 0
 
+  s = User.find_by(first_name: "Sasha")
   o = User.find_by(first_name: "Oliver")
+  
   incidents = s.incidents.select do |i|
     r = i.responders.find { |r| r.has_accepted }
     if r.nil?
